@@ -1,5 +1,5 @@
 
-# Windows Live USB Setup
+# Windows Live USB Setup <img align="right" src="https://visitor-badge.laobi.icu/badge?page_id=iamthemag.Cisco-Packet-Tracer-Linux" />
 
 Learn how to create a fully functional Live Windows USB that runs Windows directly from an external USB drive, without using third-party tools like WinToUSB. With this method, you can install Windows on a USB drive and seamlessly use it across both PCs and Macs, without altering the internal system. 
 
