@@ -75,13 +75,13 @@ First, download your desired ISO file and extract it. For example take Windows 1
 1. In the Command Prompt, type the following commands to set up the partitions on your external SSD or HDD:
 ```bash
 diskpart
-list volume  # Find the letter of your USB flash drive
+list disk  # Find the letter of your USB flash drive
 select disk <disk no.>  # Select your external SSD or HDD
 clean
 convert gpt
 
 # Create Recovery Partition
-create partition primary size=450
+create partition primary size=500
 format quick fs=ntfs label="Windows RE Tools"
 assign letter="T"
 set id="de94bba4-06d1-4d40-a16a-bfd50179d6ac"
@@ -107,7 +107,8 @@ assign letter="R"
 set id="de94bba4-06d1-4d40-a16a-bfd50179d6ac"
 gpt attributes=0x8000000000000001
 
-list volume 
+list volume
+exit
 ```
 #### Step 4: Copy Windows Installation Files
 Now we need to copy the necessary Windows 10 installation files from the flash drive to different partitions on the SSD. Execute the following commands:
@@ -115,8 +116,8 @@ Now we need to copy the necessary Windows 10 installation files from the flash d
 md R:\RecoveryImage
 
 # Replace 'D' with your USB flash drive letter
-copy D:\sources\install.wim 
-R:\RecoveryImage\install.wim  
+copy D:\sources\install.esd
+R:\RecoveryImage\install.esd  
 ```
 #### Note: Change the Index to the Windows 10 version you want to install. 
 ```bash
@@ -126,7 +127,7 @@ dism /Get-WimInfo /WimFile:D:\sources\install.wim
 ![Windows Index]( https://howtomanagedevices.com/wp-content/uploads/2021/01/image-112-1024x644.png)
 ```bash
 cd X:\Windows\System32
-dism /Apply-Image /ImageFile:R:\RecoveryImage\install.wim /Index:6 /ApplyDir:W:\  # Adjust the index as needed
+dism /Apply-Image /ImageFile:R:\RecoveryImage\install.esd /Index:6 /ApplyDir:W:\  # Adjust the index as needed
 ```
 ![Dism](https://i0.wp.com/www.kjctech.net/wp-content/uploads/2018/05/image-3.png?fit=774%2C250&ssl=1)
 
